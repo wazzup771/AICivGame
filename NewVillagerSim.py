@@ -134,8 +134,11 @@ def run():
                 if ( pos.x > clip.minimap_rect.x and pos.y > clip.minimap_rect.y ):
                     pass
                 else:
-                    if event.button == 1:
+                    if event.button == 1 and held == 1:
                         held = 1
+                        start = Vector2(*pygame.mouse.get_pos())
+                        draw = True
+                        
                         if ( pos.x < clip.side.w ) and (pos.y < clip.side.top_rect.h):
                             for L in clip.side.tiles:
                                 for T in L:
@@ -164,6 +167,7 @@ def run():
             
             if event.type == MOUSEBUTTONUP:
                 held = 0
+                draw = False
                     
             if event.type == KEYDOWN:
                 if event.key == K_F2:
